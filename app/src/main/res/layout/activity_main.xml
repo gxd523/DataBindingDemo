@@ -1,0 +1,56 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="imageSrc"
+            type="int" />
+
+        <variable
+            name="user"
+            type="com.demo.aac.data_binding.DataBindingActivity.User" />
+
+        <variable
+            name="presenter"
+            type="com.demo.aac.data_binding.Presenter" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{view->presenter.onBtnClick(view,user)}"
+            android:text="按钮"
+            android:textColor="#666"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.name,default=姓名}"
+            android:textColor="#666"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:afterTextChanged="@{presenter.afterTextChanged}"
+            android:text="@={user.name}"
+            android:textColor="#666"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            bind:imageSrc="@{imageSrc}" />
+    </LinearLayout>
+</layout>
