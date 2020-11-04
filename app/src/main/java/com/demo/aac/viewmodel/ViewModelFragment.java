@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.demo.aac.LiveViewModel;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -18,8 +20,8 @@ public class ViewModelFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // of()中传入的参数相同，拿到的viewModel也相同
-        MyViewModel viewModel = ViewModelProviders.of(getActivity()).get(MyViewModel.class);
-        MyViewModel fragmentViewModel = ViewModelProviders.of(this).get(MyViewModel.class);
+        LiveViewModel viewModel = ViewModelProviders.of(getActivity()).get(LiveViewModel.class);
+        LiveViewModel fragmentViewModel = ViewModelProviders.of(this).get(LiveViewModel.class);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

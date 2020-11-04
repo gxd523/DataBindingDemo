@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.demo.aac.BaseActivity;
 
+import java.util.concurrent.TimeUnit;
+
 import androidx.annotation.Nullable;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -29,7 +31,7 @@ public class LiveDataActivity extends BaseActivity {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(5000);
+                    TimeUnit.SECONDS.sleep(5);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

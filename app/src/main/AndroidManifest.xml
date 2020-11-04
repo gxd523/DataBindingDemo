@@ -16,6 +16,7 @@
         </activity>
         <activity android:name=".livedata.LiveDataActivity" />
         <activity android:name=".databinding.DataBindingActivity" />
+        <activity android:name=".ViewModelLiveDataActivity" />
         <activity android:name=".viewmodel.ViewModelActivity" />
     </application>
 </manifest>
