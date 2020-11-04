@@ -37,15 +37,15 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     @Override
-    protected void onStart() {
-        Log.d("gxd", String.format("%s...%s()", this.getClass().getSimpleName(), "onStart"));
-        super.onStart();
-    }
-
-    @Override
     protected void onRestart() {
         Log.d("gxd", String.format("%s...%s()", this.getClass().getSimpleName(), "onRestart"));
         super.onRestart();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d("gxd", String.format("%s...%s()", this.getClass().getSimpleName(), "onStart"));
+        super.onStart();
     }
 
     @Override
