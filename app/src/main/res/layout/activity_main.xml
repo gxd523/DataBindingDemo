@@ -1,6 +1,5 @@
 <layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -10,11 +9,15 @@
 
         <variable
             name="user"
-            type="com.demo.aac.data_binding.DataBindingActivity.User" />
+            type="com.demo.aac.databinding.DataBindingActivity.User" />
+
+        <variable
+            name="temp"
+            type="com.demo.aac.databinding.DataBindingActivity.Temp" />
 
         <variable
             name="presenter"
-            type="com.demo.aac.data_binding.Presenter" />
+            type="com.demo.aac.databinding.Presenter" />
     </data>
 
     <LinearLayout
@@ -39,18 +42,47 @@
             android:textColor="#666"
             android:textSize="20sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{temp.a,default=abc}"
+            android:textColor="#f0f"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{temp.b,default=abc}"
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{view->temp.updateAll(temp.a.toUpperCase(),temp.b.toUpperCase())}"
+            android:text="Temp全更新"
+            android:textColor="#666"
+            android:textSize="20sp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{view->temp.updateA(temp.a.toUpperCase(),temp.b.toUpperCase())}"
+            android:text="Temp只更新A"
+            android:textColor="#666"
+            android:textSize="20sp" />
+
         <EditText
             android:id="@+id/edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:afterTextChanged="@{presenter.afterTextChanged}"
+            android:afterTextChanged="@{presenter::afterTextChanged}"
             android:text="@={user.name}"
             android:textColor="#666"
             android:textSize="20sp" />
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="200dp"
-            bind:imageSrc="@{imageSrc}" />
+            android:layout_height="200dp" />
     </LinearLayout>
 </layout>
