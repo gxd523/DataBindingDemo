@@ -8,9 +8,7 @@ import com.demo.aac.lifecycle.LifecycleActivity;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.Nullable;
-import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 
 /**
  * 1、感知对应Activity的生命周期，只有生命周期处于onStart与onResume时，LiveData处于活动状态，才会把更新的数据通知至对应的Activity
@@ -19,7 +17,7 @@ import androidx.lifecycle.Observer;
  * 4、共享资源。可以使用单例模式扩展LiveData对象以包装系统服务，以便可以在应用程序中共享它们，同时有遵守了以上生命周期
  */
 public class LiveDataActivity extends LifecycleActivity {
-    private final MutableLiveData<String> liveData = new MediatorLiveData<>();
+    private final MutableLiveData<String> liveData = new MutableLiveData<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,29 +25,21 @@ public class LiveDataActivity extends LifecycleActivity {
 
         liveData.setValue("aaa");
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    TimeUnit.SECONDS.sleep(5);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                liveData.postValue("bbb");
+        new Thread(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+            liveData.postValue("bbb");
         }).start();
 
-        liveData.observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                Log.d("gxd", "LiveDataActivity.onChanged-->" + s);
-            }
-        });
+        liveData.observe(this, s -> Log.d("gxd", "LiveDataActivity.onChanged-->" + s));
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        liveData.setValue("ccc");
+        liveData.postValue("onStop");
     }
 }
