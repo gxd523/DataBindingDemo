@@ -10,7 +10,7 @@ import com.demo.aac.databinding.ActivityAacBinding;
 import java.util.concurrent.TimeUnit;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 /**
  * DataBinding+ViewModel+LiveData
@@ -24,9 +24,9 @@ public class AACActivity extends BaseActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_aac);
         // 加了这句就不需要设置liveData.observe()了
         binding.setLifecycleOwner(this);
-        final LiveViewModel viewModel = ViewModelProviders.of(this).get(LiveViewModel.class);
+        final LiveViewModel viewModel = new ViewModelProvider(this).get(LiveViewModel.class);
         binding.setViewModel(viewModel);
-        viewModel.liveData.setValue("aaa");
+        viewModel.liveData.setValue("onCreate");
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -35,7 +35,7 @@ public class AACActivity extends BaseActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                viewModel.liveData.postValue("bbb");
+                viewModel.liveData.postValue(Thread.currentThread().getName());
             }
         }).start();
 
@@ -58,6 +58,6 @@ public class AACActivity extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        binding.getViewModel().liveData.setValue("ccc");
+        binding.getViewModel().liveData.setValue("onStop");
     }
 }

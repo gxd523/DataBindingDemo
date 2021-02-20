@@ -10,7 +10,7 @@ import com.demo.aac.LiveViewModel;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 /**
  * Created by guoxiaodong on 2020/9/7 09:59
@@ -20,8 +20,8 @@ public class ViewModelFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // of()中传入的参数相同，拿到的viewModel也相同
-        LiveViewModel viewModel = ViewModelProviders.of(getActivity()).get(LiveViewModel.class);
-        LiveViewModel fragmentViewModel = ViewModelProviders.of(this).get(LiveViewModel.class);
+        LiveViewModel viewModel = new ViewModelProvider(getActivity()).get(LiveViewModel.class);
+        LiveViewModel fragmentViewModel = new ViewModelProvider(this).get(LiveViewModel.class);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }
