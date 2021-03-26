@@ -18,6 +18,6 @@
         <activity android:name=".databinding.DataBindingActivity" />
         <activity android:name=".AACActivity" />
         <activity android:name=".viewmodel.ViewModelActivity" />
-        <activity android:name=".lifecycle.LifecycleUseActivity" />
+        <activity android:name=".lifecycle.LifecycleActivity" />
     </application>
 </manifest>

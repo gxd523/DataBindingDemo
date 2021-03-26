@@ -10,7 +10,7 @@ import kotlin.concurrent.thread
 /**
  * Created by guoxiaodong on 3/26/21 10:52
  */
-class LifecyclePresenter(private val viewer: LifecycleUseActivity) : LifecycleObserver {
+class LifecyclePresenter(private val viewer: LifecycleActivity) : LifecycleObserver {
     fun getDataOnStart(owner: LifecycleOwner) {
         requestData { result ->
             if (owner.lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
@@ -24,7 +24,7 @@ class LifecyclePresenter(private val viewer: LifecycleUseActivity) : LifecycleOb
     private fun requestData(block: (String) -> Unit) {
         thread {
             Thread.sleep(5000)
-            block("get data!")
+            block("get data!!!")
         }
     }
 

@@ -3,7 +3,7 @@ package com.demo.aac.livedata;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.demo.aac.lifecycle.LifecycleActivity;
+import com.demo.aac.lifecycle.AbsLifecycleActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,7 +16,7 @@ import androidx.lifecycle.MutableLiveData;
  * 3、当生命周期处于onDestroy时，观察者会自动删除，防止内存溢出
  * 4、共享资源。可以使用单例模式扩展LiveData对象以包装系统服务，以便可以在应用程序中共享它们，同时有遵守了以上生命周期
  */
-public class LiveDataActivity extends LifecycleActivity {
+public class LiveDataActivity extends AbsLifecycleActivity {
     private final MutableLiveData<String> liveData = new MutableLiveData<>();
 
     @Override
