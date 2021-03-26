@@ -42,4 +42,12 @@ class LifecyclePresenter(private val viewer: LifecycleActivity) : LifecycleObser
     fun onDestroy() {
         Log.d("gxd", "MyObserver.onDestroy-->")
     }
+
+    /**
+     * 接收全部生命周期事件
+     */
+    @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
+    fun onAny(owner: LifecycleOwner?, event: Lifecycle.Event?) {
+//        Log.d("gxd", "LifecyclePresenter.onAny-->${event?.name}")
+    }
 }
